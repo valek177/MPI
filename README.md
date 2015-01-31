@@ -1,3 +1,9 @@
 # mpi
 MPI Project
-Проект по МПИ "Зубная фея"
+Description:
+Tooth fairy super project
+
+Authors:
+Valentina Bogdanova
+Nikolai Nikitin
+Isaac Boutaleb
