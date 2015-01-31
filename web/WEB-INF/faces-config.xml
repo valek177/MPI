@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+    <managed-bean>
+        <managed-bean-name>UserAuthController</managed-bean-name>
+        <managed-bean-class>toothfairy1.Controllers.UserAuthController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean> 
+    
+      <managed-bean>
+        <managed-bean-name>AddToothController</managed-bean-name>
+        <managed-bean-class>toothfairy1.Controllers.AddToothController</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        
+        <managed-bean>
+        <managed-bean-name>TaskToFairyController</managed-bean-name>
+        <managed-bean-class>toothfairy1.Controllers.TaskToFairyController</managed-bean-class>
+         <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        
+        <managed-bean>
+        <managed-bean-name>StealMoneyController</managed-bean-name>
+        <managed-bean-class>toothfairy1.Controllers.StealMoneyController</managed-bean-class>
+   
+        <managed-bean-scope>view</managed-bean-scope></managed-bean>
+
+</faces-config>

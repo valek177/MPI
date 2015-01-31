@@ -1,0 +1,100 @@
+h2{
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+    color: teal;
+    font-weight: bold;
+    font-style: italic;
+    position: absolute;
+    top: 2px;
+    left: 30px;
+}
+
+.areaImage{
+    position: absolute;
+    top: 80px;
+    left: 20px;
+}
+
+.buttonListX{
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: green;
+    font-weight: bold;
+    position: absolute;
+    top: 60px;
+    left: 480px;
+}
+
+.buttonX{
+    width: 50px;
+}
+
+.linkListR{
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: green;
+    font-weight: bold;
+    position: absolute;
+    top: 60px;
+    left: 580px;
+}
+
+.linkR{
+    color: darkcyan
+}
+
+.labelY{
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: green;
+    font-weight: bold;
+    position: absolute; 
+    top: 180px;
+    left: 620px;
+}
+
+.textboxY{
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: green;
+    width: 40px;
+    position: absolute;
+    top: 195px;
+    left: 620px;
+
+}
+
+.buttonCheck{
+    position: absolute;
+    top: 230px;
+    left: 620px;
+}
+
+.resultsTable{
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    position: absolute;
+    top: 80px;
+    left: 780px;
+}
+
+.resultsHeader{
+    background-color: darkseagreen
+}
+
+.resultsColumnNumber{
+    width: 30px;
+    text-align: center;
+}
+
+.resultsColumnResult{
+    width: 180px;
+    text-align: center;
+}
+
+.errorMessage{
+    position: absolute;
+    top: 550px;
+    left: 40px;
+    color: red;
+}
