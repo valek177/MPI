@@ -12,6 +12,7 @@ package toothfairy1.Models;
 public class User {
        public long id;
        public String login;
+        public String name;
        public String password;
        public long roleId;
        public long roleEntityId;  

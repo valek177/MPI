@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
 
 /**
  *
@@ -20,6 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="TASKS")
+@Proxy(lazy=false)
 public class TaskTable {
     private long id;
     private long toothId;

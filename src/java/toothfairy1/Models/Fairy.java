@@ -18,12 +18,13 @@ import toothfairy1.Managers.TaskManager;
  */
 public class Fairy {
     public long id;
+    public long mainFairyId;
     public String name;
     public String character;
     public String skill;
     public int totalMoney;
     public String photoContent; 
-    
+    public boolean assignedToFairy;
     public Fairy()
     {
 
@@ -41,7 +42,8 @@ public class Fairy {
         f.setSkill(convertToDB(skill));
         f.setFCharacter(convertToDB(character));
         f.setTotalMoney(totalMoney);
-          
+        f.setMainFairyId(mainFairyId);
+        if (!assignedToFairy) f.setMainFairyId((long)-1);
         Factory.getInstance().getFairyDAO().updateFairy(f);
          
     }
@@ -58,9 +60,21 @@ public class Fairy {
     public void setId(long id){
        this.id = id;
     }
+    
+    public boolean getAssignedToFairy(){
+        return assignedToFairy;
+    }
+    
+    public void setAssignedToFairy(boolean assignedToFairy){
+       this.assignedToFairy = assignedToFairy;
+    }
      
     public String getName(){
         return name;
+    }
+    
+    public long getMainFairyId(){
+        return mainFairyId;
     }
     
     public void setName(String name){

@@ -37,7 +37,7 @@ public class FairyDAOImpl implements FairyDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-              //      session.close();
+                    session.close();
                 }
             }
     }
@@ -54,7 +54,7 @@ public class FairyDAOImpl implements FairyDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-               //     session.close();
+               session.close();
                 }
             }
     }
@@ -70,7 +70,7 @@ public class FairyDAOImpl implements FairyDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-              //      session.close();
+                    session.close();
                 }
             }
             return fairy;
@@ -87,7 +87,7 @@ public class FairyDAOImpl implements FairyDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-               //     session.close();
+               session.close();
                 }
             }
             return fairies;
@@ -105,7 +105,7 @@ public class FairyDAOImpl implements FairyDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-              //      session.close();
+                    session.close();
                 }
             }
     }

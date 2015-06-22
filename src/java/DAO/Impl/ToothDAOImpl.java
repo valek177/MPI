@@ -34,7 +34,7 @@ public class ToothDAOImpl implements ToothDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                 //   session.close();
+                    session.close();
                 }
             }
     }
@@ -51,7 +51,7 @@ public class ToothDAOImpl implements ToothDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                 //   session.close();
+                    session.close();
                 }
             }
     }
@@ -67,7 +67,7 @@ public class ToothDAOImpl implements ToothDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                   // session.close();
+                    session.close();
                 }
             }
             return tooth;
@@ -84,7 +84,7 @@ public class ToothDAOImpl implements ToothDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                 //   session.close();
+                    session.close();
                 }
             }
             return teeth;
@@ -102,7 +102,7 @@ public class ToothDAOImpl implements ToothDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                //    session.close();
+                    session.close();
                 }
             }
     }

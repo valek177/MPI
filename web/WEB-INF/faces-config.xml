@@ -16,17 +16,27 @@
         <managed-bean-name>AddToothController</managed-bean-name>
         <managed-bean-class>toothfairy1.Controllers.AddToothController</managed-bean-class>
     
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        <managed-bean-scope>session</managed-bean-scope>
+      </managed-bean>
         
         <managed-bean>
         <managed-bean-name>TaskToFairyController</managed-bean-name>
         <managed-bean-class>toothfairy1.Controllers.TaskToFairyController</managed-bean-class>
-         <managed-bean-scope>session</managed-bean-scope></managed-bean>
+         <managed-bean-scope>session</managed-bean-scope>
+        </managed-bean>
         
         <managed-bean>
         <managed-bean-name>StealMoneyController</managed-bean-name>
         <managed-bean-class>toothfairy1.Controllers.StealMoneyController</managed-bean-class>
    
-        <managed-bean-scope>view</managed-bean-scope></managed-bean>
+        <managed-bean-scope>view</managed-bean-scope>
+        </managed-bean>
+        
+        <managed-bean>
+        <managed-bean-name>EditProfileController</managed-bean-name>
+        <managed-bean-class>toothfairy1.Controllers.EditProfileController</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope>
+      </managed-bean>
 
 </faces-config>

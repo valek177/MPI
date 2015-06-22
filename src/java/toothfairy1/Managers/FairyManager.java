@@ -11,10 +11,14 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import toothfairy1.Helpers;
 import static toothfairy1.Helpers.toByteArray;
+import static toothfairy1.Managers.UserManager.GetAll;
 import toothfairy1.Models.Fairy;
 import toothfairy1.Models.FairyTable;
+import toothfairy1.Models.User;
 
 /**
  *
@@ -25,30 +29,14 @@ public class FairyManager {
     public static List<Fairy> GetAll() throws SQLException, UnsupportedEncodingException
     {
         List<Fairy> list = new ArrayList<Fairy>();
-        //вот тут из базы надо брать
-      /*  Fairy f1 = new Fairy();
-        f1.id = 1;
-        f1.character = "Дружелюбный";
-        f1.name="Фея 1";
-        f1.skill="Матёрая";
-        f1.totalMoney=15000;
-        
-        
-        Fairy f2 = new Fairy();
-        f2.id = 2;
-        f2.character = "Замкнутый";
-        f2.name="Фея 2";
-        f2.skill="Неопытная";
-        f2.totalMoney=0;
-        f2.photoContent=f1.photoContent;
-        
-        */
         Factory atata = new Factory();
         List<FairyTable> fairies = atata.getInstance().getFairyDAO().getAllFairies();
         for(int i = 0; i < fairies.size(); ++i) {
            // System.out.println("1: " + Helpers.convert(fairies.get(i).getName()));
               Fairy f1 = new Fairy();
               f1.id = fairies.get(i).getId();
+              f1.mainFairyId = fairies.get(i).getMainFairyId();
+              f1.assignedToFairy =  (f1.mainFairyId > 0);
               f1.name = Helpers.convert(fairies.get(i).getName());
               f1.skill = Helpers.convert(fairies.get(i).getSkill());
               f1.character = Helpers.convert(fairies.get(i).getFCharacter());
@@ -65,9 +53,7 @@ public class FairyManager {
               
               list.add(f1);
         }
-       // list.add(f1);
-       // list.add(f2);
-        
+       
         return list;
     }
     
@@ -78,6 +64,8 @@ public class FairyManager {
         f.id = id;
         f.name = Helpers.convert(fairy.getName());
         f.skill = Helpers.convert(fairy.getSkill());
+        f.mainFairyId = fairy.getMainFairyId();
+        f.assignedToFairy =  (f.mainFairyId > 0);
         f.character = Helpers.convert(fairy.getFCharacter());
         f.totalMoney = fairy.getTotalMoney();
         if (fairy.getPhoto() != null) {
@@ -90,5 +78,36 @@ public class FairyManager {
                   f.photoContent = "";
               }
         return f;
+    }
+    
+    public static List<Fairy> GetFairysByMainFairyId(long id) throws SQLException, UnsupportedEncodingException
+    {
+       List<Fairy> list = new ArrayList<Fairy>();
+        Factory atata = new Factory();
+        List<FairyTable> fairies = atata.getInstance().getFairyDAO().getAllFairies();
+        for(int i = 0; i < fairies.size(); ++i) {
+            if (fairies.get(i).getMainFairyId() == id || fairies.get(i).getMainFairyId() < 0)
+            {
+              Fairy f1 = new Fairy();
+              f1.id = fairies.get(i).getId();
+              f1.mainFairyId = fairies.get(i).getMainFairyId();
+              f1.assignedToFairy =  (f1.mainFairyId > 0);
+              f1.name = Helpers.convert(fairies.get(i).getName());
+              f1.skill = Helpers.convert(fairies.get(i).getSkill());
+              f1.character = Helpers.convert(fairies.get(i).getFCharacter());
+              f1.totalMoney = fairies.get(i).getTotalMoney();
+              if (fairies.get(i).getPhoto() != null) {
+                                String a = Base64.encode(toByteArray(fairies.get(i).getPhoto()));
+                  f1.photoContent = a;
+              } else {
+                  f1.photoContent = "";
+              }
+              
+              list.add(f1);
+            }
+        }
+        
+        return list;
+         
     }
 }

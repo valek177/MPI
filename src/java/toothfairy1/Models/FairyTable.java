@@ -17,6 +17,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
 /**
  *
  * @author Николай &   valya
@@ -24,6 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="ASS_FAIRIES")
+@Proxy(lazy=false)
 public class FairyTable {
     
     private Long id;
@@ -31,7 +33,7 @@ public class FairyTable {
     private String character;
     private String skill;
     private int totalMoney;
-    
+    private Long mainFairyId;
    
     
     public FairyTable() {
@@ -96,6 +98,15 @@ public class FairyTable {
     
     public void setPhoto(Blob photo){
         photoContent = photo;    
+    }
+    
+    @Column(name="MAIN_FAIRY_ID")
+    public Long getMainFairyId(){
+        return mainFairyId;
+    }
+  
+    public void setMainFairyId(Long s){
+        mainFairyId = s;
     }
     //
     

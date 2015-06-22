@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
 
 /**
  *
@@ -20,6 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="PARENT")
+@Proxy(lazy=false)
 public class ParentTable {
     
     private long id;

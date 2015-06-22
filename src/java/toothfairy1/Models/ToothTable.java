@@ -20,8 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.type.LobType;
-
+import org.hibernate.annotations.Proxy;
 
 /**
  *
@@ -29,6 +28,7 @@ import org.hibernate.type.LobType;
  */
 @Entity
 @Table(name="TEETH")
+@Proxy(lazy=false)
 public class ToothTable {
         private long id;
         private String shape;

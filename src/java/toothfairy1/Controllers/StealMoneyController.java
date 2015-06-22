@@ -25,7 +25,7 @@ public class StealMoneyController {
     
     public StealMoneyController() throws SQLException, UnsupportedEncodingException
     {
-        currentFairy = FairyManager.GetFairyById(UserAuthController.currentUser.id);
+        currentFairy = FairyManager.GetFairyById(UserAuthController.currentUser.roleEntityId);
         isListView = true;
     }
     public Fairy getCurrentFairy() {

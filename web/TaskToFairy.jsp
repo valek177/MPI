@@ -23,8 +23,9 @@
         <f:view>	
             <h:form>
                 <div align="right">
-<h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
-</div>
+                    <h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
+                    <h:commandButton value="Редактировать профиль" action="#{UserAuthController.editProfile}" styleClass="btn btn-primary"/>
+                </div>
                 <div align="center">
                     <div>Выбор исполнителя</div>           
                     <table border="1">

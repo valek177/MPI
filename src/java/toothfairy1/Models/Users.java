@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
 
 
 /**
@@ -21,12 +22,14 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="USERS")
+@Proxy(lazy=false)
 public class Users {
     private Long ID;
     private Long ROLE_ID;
     private String NAME;
     private String LOGIN;
     private String PASSWORD;
+    private Long ROLE_ENTITY_ID;
     
     public Users() {
         NAME = null;
@@ -65,6 +68,16 @@ public class Users {
     public void setRoleId(Long i){
         ROLE_ID = i;
     }  
+    
+    
+    @Column(name="ROLE_ENTITY_ID")
+    public Long getRoleEntityId(){
+        return ROLE_ENTITY_ID;
+    }
+  
+    public void setRoleEntityId(Long i){
+        ROLE_ENTITY_ID = i;
+    }  
    
     @Column(name="LOGIN")
     public String getLogin(){
@@ -81,6 +94,6 @@ public class Users {
     }
   
     public void setPassword(String s){
-        LOGIN = s;
+        PASSWORD = s;
     } 
 }

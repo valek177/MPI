@@ -34,7 +34,7 @@ public class TaskDAOImpl implements TaskDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                   // session.close();
+                    session.close();
                 }
             }
     }
@@ -51,7 +51,7 @@ public class TaskDAOImpl implements TaskDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                 //   session.close();
+                    session.close();
                 }
             }
     }
@@ -67,7 +67,7 @@ public class TaskDAOImpl implements TaskDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                  //  session.close();
+                    session.close();
                 }
             }
             return task;
@@ -84,7 +84,7 @@ public class TaskDAOImpl implements TaskDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                //    session.close();
+                    session.close();
                 }
             }
             return tasks;
@@ -102,7 +102,7 @@ public class TaskDAOImpl implements TaskDAO {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка I/O", JOptionPane.OK_OPTION);
             } finally {
                 if (session != null && session.isOpen()) {
-                 //   session.close();
+                    session.close();
                 }
             }
     }

@@ -6,6 +6,8 @@
 
 package toothfairy1.Controllers;
 
+import DAO.Factory;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,9 +20,17 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import toothfairy1.Managers.FairyManager;
 import toothfairy1.Managers.UserManager;
+import toothfairy1.Models.Fairy;
+import toothfairy1.Models.FairyTable;
 import toothfairy1.Models.User;
 import toothfairy1.UserAuth;
+import util.HibernateUtil;
 /**
  *
  * @author valya
@@ -54,38 +64,50 @@ public class UserAuthController {
           currentUser = null;
           return "main.jsp";
       }
-
-   
+      
+       public String editProfile() {
+          return "EditProfile.jsp";
+      }
+      
+      
+      public long getUserType()
+      {
+          return currentUser.roleId;
+      }
+    
     public String check_user() {
-        currentUser = UserManager.GetUser(curLogin, curPassword);
-        if (currentUser == null)
+        try
         {
-               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Логин или пароль введены неверно"));
-               return null;
+            currentUser = UserManager.GetUser(curLogin, curPassword);
+            if (currentUser == null)
+            {
+                   FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Логин или пароль введены неверно"));
+                   return null;
+            }
+
+            if (currentUser.roleId==1)
+            {
+                return "TaskToFairy.jsp";
+            }
+
+            if (currentUser.roleId==2)
+            {
+                return "StealMoney.jsp";
+            }
+
+              if (currentUser.roleId==4)
+            {
+                return "AddTooth.jsp";
+            }
+
+            return null;
+        }
+        catch (Exception e) {
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Не удалось проверить данные пользователя"));
+               return "";
         }
         
-        if (currentUser.roleId==1)
-        {
-            return "TaskToFairy.jsp";
-        }
-        
-        if (currentUser.roleId==2)
-        {
-            return "StealMoney.jsp";
-        }
-         
-          if (currentUser.roleId==4)
-        {
-            return "AddTooth.jsp";
-        }
-        
-        return null;
     }
-    
-    
-    
-    
-    
     
     public String big_image = "Qk2GVQAAAAAAADYAAAAoAAAAXQAAAE4AAAABABgAAAAAAFBVAAAAAAAAAAAAAAAAAAAAAAAA////\n" +
 "////////////////////////////////////////////////////////////////////////////\n" +

@@ -24,6 +24,7 @@
             <h:form enctype="multipart/form-data">
                 <div align="right">
 <h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
+<h:commandButton value="Редактировать профиль" action="#{UserAuthController.editProfile}" styleClass="btn btn-primary"/>
 </div>
                 <h:panelGroup rendered="#{StealMoneyController.isListView}" id="pTasks"> 
                     <div>Текущие задачи</div>
