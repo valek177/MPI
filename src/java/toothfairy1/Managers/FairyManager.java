@@ -10,6 +10,7 @@ import com.sun.xml.wss.impl.misc.Base64;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -53,8 +54,8 @@ public class FairyManager {
               
               list.add(f1);
         }
-       
-        return list;
+       Collections.sort(list);
+       return list;
     }
     
     public static Fairy GetFairyById(long id) throws SQLException, UnsupportedEncodingException
@@ -107,7 +108,8 @@ public class FairyManager {
             }
         }
         
-        return list;
+       Collections.sort(list);
+       return list;
          
     }
 }
