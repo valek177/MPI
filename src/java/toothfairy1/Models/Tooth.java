@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.servlet.http.Part;
 import static toothfairy1.Helpers.convertToDB;
 import toothfairy1.Managers.ChildrenManager;
+import toothfairy1.Managers.TaskManager;
 import toothfairy1.Managers.ToothManager;
 
 
@@ -109,6 +110,9 @@ public class Tooth {
         
         public void DeleteFromDb() throws SQLException, UnsupportedEncodingException
         {
+             Task taskForTooth = TaskManager.GetTaskForTooth(id);
+             if (taskForTooth != null) taskForTooth.deleteFromDb();
+            
              ToothTable tooth = Factory.getInstance().getToothDAO().getToothById(id);
              Factory.getInstance().getToothDAO().deleteTooth(tooth);
         }
