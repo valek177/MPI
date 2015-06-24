@@ -39,7 +39,7 @@ public class TaskToFairyController {
     
     public Fairy[] getFairyList() throws SQLException, UnsupportedEncodingException {
  
-        fairyList = FairyManager.GetAll().toArray(new Fairy[0]);
+        fairyList = FairyManager.GetFairysByMainFairyId(UserAuthController.currentUser.roleEntityId, false).toArray(new Fairy[0]);
         return fairyList;
     }
    
