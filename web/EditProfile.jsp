@@ -6,7 +6,7 @@
 <html>
    <head>
         <link rel="stylesheet" type="text/css" href="styles.css">
-             <link rel="stylesheet" type="text/css" href="bootstrap.css">	
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">	
         <link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -24,7 +24,7 @@
             <h:form enctype="multipart/form-data">
                 <div align="right">
                     <h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
-                    <h:commandButton value="Редактировать профиль" action="#{UserAuthController.editProfile}" styleClass="btn btn-primary"/>
+                    <h:commandButton value="Назад" action="#{EditProfileController.GoBack}" styleClass="btn btn-primary"/>
                 </div>
                 <table>
                 <tr>
@@ -55,6 +55,25 @@
                              <h:column>
                                 <f:facet name="header">  <h:outputText value="Выбрана"/>  </f:facet>    
                                 <h:selectBooleanCheckbox styleClass="btn btn-danger" value="#{fairy.assignedToFairy}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    </h:panelGrid>
+                    <h:panelGrid rendered="#{UserAuthController.userType == 4}">
+                    <div>Дети</div>
+                    <div>
+                        <h:dataTable value="#{EditProfileController.childList}" var="child" border="1" styleClass="table">
+                            <h:column>
+                                <f:facet name="header">  <h:outputText value="Имя"/>  </f:facet>    
+                                <h:outputText value="#{child.name}"/>  
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  <h:outputText value="Сон"/>  </f:facet>    
+                                <h:outputText value="#{child.sleepInfo}"/>  
+                            </h:column>
+                             <h:column>
+                                <f:facet name="header">  <h:outputText value="Выбран"/>  </f:facet>    
+                                <h:selectBooleanCheckbox styleClass="btn btn-danger" value="#{child.assignedToParent}"/>
                             </h:column>
                         </h:dataTable>
                     </div>

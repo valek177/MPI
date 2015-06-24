@@ -116,6 +116,12 @@ public class Task {
          }
     }
     
+    public void deleteFromDb() throws SQLException, UnsupportedEncodingException
+    {
+         TaskTable task = Factory.getInstance().getTaskDAO().getTaskById(id);
+         Factory.getInstance().getTaskDAO().deleteTask(task);
+    }
+    
     public void executeTask() throws SQLException, UnsupportedEncodingException
     {
         

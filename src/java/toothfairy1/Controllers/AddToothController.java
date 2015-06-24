@@ -19,6 +19,7 @@ import java.lang.Exception;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import static toothfairy1.Controllers.UserAuthController.currentUser;
 import toothfairy1.Models.ToothProperty;
 
 /**
@@ -45,6 +46,15 @@ public class AddToothController {
         {
             lossDate = new java.sql.Date(new java.util.Date().getTime());
             size = 1.5;
+        }
+        
+        public String unAuthorize() {
+          currentUser = null;
+          return "main.jsp";
+        }
+        
+        public String adminTooth() {
+          return "ToothAdmin.jsp";
         }
         
         public Boolean getShowSuccessAlert() {

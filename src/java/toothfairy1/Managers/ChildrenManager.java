@@ -25,22 +25,7 @@ public class ChildrenManager {
     public static List<Child> GetAll() throws SQLException, UnsupportedEncodingException
     {
         List<Child> list = new ArrayList<Child>();
-        //вот тут из базы надо брать
-       /* Child t1 = new Child();
-        t1.id = 1;
-        t1.name="Вася";
-        t1.parentId=1;
-        t1.sleepInfo="Чуткий";
-        t1.photoContent="Qk2GVQAAAAAAADYAAAAoAAAAXQAAAE4AAAABABgAAAAAAFBVAAAAAAAAAAAAAAAAAAAAAA";
-          
-        Child t2 = new Child();
-        t2.id = 2;
-        t2.name="Петя";
-        t2.parentId=2;
-        t2.sleepInfo="Глубокий";
-        t2.photoContent=t1.photoContent;
-        */
-        
+                
         Factory atata = new Factory();
         List<ChildTable> children = atata.getInstance().getChildDAO().getAllChildren();
         for(int i = 0; i < children.size(); ++i) {
@@ -49,13 +34,11 @@ public class ChildrenManager {
               f1.id = children.get(i).getId();
               f1.name = Helpers.convert(children.get(i).getName());
               f1.parentId = children.get(i).getParentId();
+              f1.assignedToParent =  (f1.parentId > 0);
               f1.sleepInfo = Helpers.convert(children.get(i).getSleepInfo());
              
-              //photo
               list.add(f1);
         }
-      //  list.add(t1);
-    //    list.add(t2);*/
         return list;
     }
     
@@ -66,13 +49,30 @@ public class ChildrenManager {
         f1.id = children.getId();
         f1.name = Helpers.convert(children.getName());
         f1.parentId = children.getParentId();
+        f1.assignedToParent =  (f1.parentId > 0);
         f1.sleepInfo = Helpers.convert(children.getSleepInfo());
         return f1;
     }
     
-    public static List<Child> GetAllForParent(long parentId)
+    public static List<Child> GetAllForParent(long parentId, Boolean addUnassigned) throws SQLException, UnsupportedEncodingException
     {
         List<Child> list = new ArrayList<Child>();
+                
+        Factory atata = new Factory();
+        List<ChildTable> children = atata.getInstance().getChildDAO().getAllChildren();
+        for(int i = 0; i < children.size(); ++i) {
+             if (children.get(i).getParentId() == parentId || (children.get(i).getParentId() < 0 && addUnassigned))
+             {
+              Child f1 = new Child();
+              f1.id = children.get(i).getId();
+              f1.name = Helpers.convert(children.get(i).getName());
+              f1.parentId = children.get(i).getParentId();
+              f1.assignedToParent =  (f1.parentId > 0);
+              f1.sleepInfo = Helpers.convert(children.get(i).getSleepInfo());
+             
+              list.add(f1);
+             }
+        }
 
         return list;
     }

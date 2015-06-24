@@ -24,24 +24,14 @@ public class ToothManager {
     public static List<Tooth> GetAll() throws SQLException, UnsupportedEncodingException
     {
         List<Tooth> list = new ArrayList<Tooth>();
-        //вот тут из базы надо брать
-      /*  Tooth t1 = new Tooth();
-        t1.id = 1;
-        t1.cost = 100;
-        t1.childId=1;
-        Tooth t2 = new Tooth();
-        t2.id = 2;
-        t2.cost = 200;
-        t2.childId=2;
-        list.add(t1);
-        list.add(t2);*/
-        
+
         Factory atata = new Factory();
         List<ToothTable> teeth = atata.getInstance().getToothDAO().getAllTeeth();
         for(int i = 0; i < teeth.size(); ++i) {
            // System.out.println("1: " + Helpers.convert(teeth.get(i).getName()));
               Tooth t = new Tooth();
               t.id = teeth.get(i).getId();
+              t.childId = teeth.get(i).getChildId();
               t.defect = Helpers.convert(teeth.get(i).getDefect());
               t.description = Helpers.convert(teeth.get(i).getDescription());
               t.position = Helpers.convert(teeth.get(i).getPosition());
@@ -61,7 +51,7 @@ public class ToothManager {
         
     }
     
-     public static Tooth GetToothById(long id) throws SQLException, UnsupportedEncodingException
+    public static Tooth GetToothById(long id) throws SQLException, UnsupportedEncodingException
     {
          Tooth t = new Tooth();
         ToothTable tooth = Factory.getInstance().getToothDAO().getToothById(id);
@@ -76,5 +66,30 @@ public class ToothManager {
         t.size = tooth.getSize();
         t.childId = tooth.getChildId();
         return t;
+    }
+    
+    public static List<Tooth> GetAllForParent(long parentId) throws SQLException, UnsupportedEncodingException
+    {
+        List<Tooth> list = new ArrayList<Tooth>();
+
+        Factory atata = new Factory();
+        List<ToothTable> teeth = atata.getInstance().getToothDAO().getAllTeeth();
+        for(int i = 0; i < teeth.size(); ++i) {
+           // System.out.println("1: " + Helpers.convert(teeth.get(i).getName()));
+              Tooth t = new Tooth();
+              t.id = teeth.get(i).getId();
+              t.childId = teeth.get(i).getChildId();
+              t.defect = Helpers.convert(teeth.get(i).getDefect());
+              t.description = Helpers.convert(teeth.get(i).getDescription());
+              t.position = Helpers.convert(teeth.get(i).getPosition());
+              t.shape = Helpers.convert(teeth.get(i).getShape());
+              t.texture = Helpers.convert(teeth.get(i).getTexture());
+              t.lossDate = teeth.get(i).getLossDate();
+              t.cost = teeth.get(i).getCost();
+              
+              list.add(t);
+        }
+        
+        return list;
     }
 }

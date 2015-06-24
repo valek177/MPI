@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.servlet.http.Part;
 import static toothfairy1.Helpers.convertToDB;
 import toothfairy1.Managers.ChildrenManager;
+import toothfairy1.Managers.ToothManager;
 
 
 /**
@@ -23,6 +24,7 @@ public class Tooth {
         public String shape;
         public String texture;
         public String defect;
+
         public String position;       
         public double size;
         public Date lossDate;
@@ -47,7 +49,23 @@ public class Tooth {
         public Child getChild() throws SQLException, UnsupportedEncodingException{
             return ChildrenManager.GetChildById(childId);
         }
-         
+        
+         public String getChildName() throws SQLException, UnsupportedEncodingException{
+             try    
+             {
+                Child child =  ChildrenManager.GetChildById(childId);
+                if (child != null) return child.name; else return "Unknown";
+             }
+             catch (Exception ex)
+            {
+                return "unknown";
+            }
+         }
+        
+        public String getDefect() {
+            return defect;
+        }
+
         public long getId(){
             return id;
         }
@@ -56,10 +74,18 @@ public class Tooth {
            this.id = id;
         }
         
-         public double getCost(){
+        public double getCost(){
             return cost;
         }
         
+        public String getPosition(){
+            return position;
+        }
+        
+        public Date getLossDate(){
+            return lossDate;
+        }
+                 
         public void SaveInDb() throws SQLException, UnsupportedEncodingException
         {
            
@@ -81,9 +107,10 @@ public class Tooth {
             System.out.println("alala");
         }
         
-        public void DeleteFromDb()
+        public void DeleteFromDb() throws SQLException, UnsupportedEncodingException
         {
-            
+             ToothTable tooth = Factory.getInstance().getToothDAO().getToothById(id);
+             Factory.getInstance().getToothDAO().deleteTooth(tooth);
         }
         
         public void Validate()

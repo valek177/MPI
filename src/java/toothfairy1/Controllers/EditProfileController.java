@@ -35,6 +35,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import static toothfairy1.Controllers.UserAuthController.currentUser;
+import toothfairy1.Managers.ChildrenManager;
 import toothfairy1.Managers.FairyManager;
 import toothfairy1.Models.ToothProperty;
 
@@ -52,10 +54,17 @@ public class EditProfileController {
         private Boolean showSuccessAlert;
         
         public Fairy[] fairyList;
-    
+        
+        public Child[] childList;
+           
         public Fairy[] getFairyList() throws SQLException, UnsupportedEncodingException {
-            fairyList = FairyManager.GetFairysByMainFairyId(currentUser.roleEntityId).toArray(new Fairy[0]);
+            fairyList = FairyManager.GetFairysByMainFairyId(currentUser.roleEntityId, true).toArray(new Fairy[0]);
             return fairyList;
+        }
+        
+         public Child[] getChildList() throws SQLException, UnsupportedEncodingException {
+            childList = ChildrenManager.GetAllForParent(currentUser.roleEntityId, true).toArray(new Child[0]);
+            return childList;
         }
         
         public EditProfileController() throws SQLException, UnsupportedEncodingException
@@ -70,7 +79,34 @@ public class EditProfileController {
             else
             {
                 fairyList = null;
+                if (currentUser.roleId==4)
+                {
+                    childList = getChildList();
+                }
+                else
+                {
+                    childList = null;
+                }
             }
+        }
+        
+        public String GoBack()
+        {
+            if (currentUser.roleId==1)
+            {
+                return "TaskToFairy.jsp";
+            }
+
+            if (currentUser.roleId==2)
+            {
+                return "StealMoney.jsp";
+            }
+
+              if (currentUser.roleId==4)
+            {
+                return "AddTooth.jsp";
+            }
+            return "main.jsp";
         }
         
         public Boolean getShowSuccessAlert() {
@@ -122,7 +158,7 @@ public class EditProfileController {
        
       public String updateProfile() throws SQLException, UnsupportedEncodingException
       {
-          if (fairyList.length > 0)
+          if (fairyList != null && fairyList.length > 0)
           {
               for (Fairy fairy : fairyList)
               {
@@ -135,6 +171,21 @@ public class EditProfileController {
                       fairy.mainFairyId = -1;
                   }
                   fairy.SaveInDb();
+              }
+          }
+          if (childList != null && childList.length > 0)
+          {
+              for (Child child : childList)
+              {
+                  if (child.assignedToParent)
+                  {
+                      child.parentId = currentUser.roleEntityId;
+                  }
+                  else
+                  {
+                      child.parentId = -1;
+                  }
+                  child.SaveInDb();
               }
           }
           return "";

@@ -5,9 +5,11 @@
  */
 package toothfairy1.Models;
 
+import DAO.Factory;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
+import static toothfairy1.Helpers.convertToDB;
 import toothfairy1.Managers.ParentManager;
 
 /**
@@ -20,6 +22,7 @@ public class Child {
     public String name;
     public String sleepInfo;
     public String photoContent; 
+    public boolean assignedToParent;
     
     public Child()
     {
@@ -30,9 +33,25 @@ public class Child {
         return photoContent;
     }
     
-    public void SaveInDb()
+    public void SaveInDb() throws SQLException, UnsupportedEncodingException
     {
-
+        ChildTable ch = new ChildTable();
+        ch.setId(id);
+        ch.setName(convertToDB(name));
+        ch.setParentId(parentId);
+        ch.setSleepInfo(convertToDB(sleepInfo));
+        if (photoContent != null) ch.setPhotoContent(photoContent.getBytes());
+        ch.setSleepInfo(convertToDB(sleepInfo));
+        if (!assignedToParent) ch.setParentId((long)-1);
+        Factory.getInstance().getChildDAO().updateChild(ch);
+    }
+    
+    public boolean getAssignedToParent(){
+        return assignedToParent;
+    }
+    
+    public void setAssignedToParent(boolean assignedToParent){
+       this.assignedToParent = assignedToParent;
     }
 
     public void DeleteFromDb()

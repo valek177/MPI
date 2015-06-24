@@ -80,13 +80,13 @@ public class FairyManager {
         return f;
     }
     
-    public static List<Fairy> GetFairysByMainFairyId(long id) throws SQLException, UnsupportedEncodingException
+    public static List<Fairy> GetFairysByMainFairyId(long id, Boolean addUnassigned) throws SQLException, UnsupportedEncodingException
     {
        List<Fairy> list = new ArrayList<Fairy>();
         Factory atata = new Factory();
         List<FairyTable> fairies = atata.getInstance().getFairyDAO().getAllFairies();
         for(int i = 0; i < fairies.size(); ++i) {
-            if (fairies.get(i).getMainFairyId() == id || fairies.get(i).getMainFairyId() < 0)
+            if (fairies.get(i).getMainFairyId() == id || (fairies.get(i).getMainFairyId() < 0 && addUnassigned))
             {
               Fairy f1 = new Fairy();
               f1.id = fairies.get(i).getId();

@@ -25,9 +25,12 @@
         <f:view>	
             <h:form enctype="multipart/form-data">
                 <div align="right">
-<h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
-<h:commandButton value="Редактировать профиль" action="#{UserAuthController.editProfile}" styleClass="btn btn-primary"/>
-</div>
+                    <h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
+                    <h:commandButton value="Редактировать профиль" action="#{UserAuthController.editProfile}" styleClass="btn btn-primary"/>
+                </div>
+                <div align="right">
+                    <h:commandButton value="Администрирование зубов" action="#{AddToothController.adminTooth}" styleClass="btn btn-primary"/>
+                </div>
                 <table>
                 <tr>
                     <td align="right" valign="top">
