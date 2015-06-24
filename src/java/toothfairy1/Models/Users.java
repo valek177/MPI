@@ -27,6 +27,7 @@ public class Users {
     private Long ID;
     private Long ROLE_ID;
     private String NAME;
+    private String EMAIL;
     private String LOGIN;
     private String PASSWORD;
     private Long ROLE_ENTITY_ID;
@@ -60,6 +61,15 @@ public class Users {
         NAME = s;
     } 
     
+    
+    @Column(name="EMAIL")
+    public String getEmail(){
+        return EMAIL;
+    }
+  
+    public void setEmail(String s){
+        EMAIL = s;
+    } 
     @Column(name="ROLE_ID")
     public Long getRoleId(){
         return ROLE_ID;

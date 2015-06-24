@@ -68,7 +68,7 @@ public class EditProfileController {
         public EditProfileController() throws SQLException, UnsupportedEncodingException
         {
             fio = UserAuthController.currentUser.name;
-            email = "test@test.com";
+            email = UserAuthController.currentUser.email;
             if (UserAuthController.currentUser.roleId==1)
             {
                 fairyList = getFairyList();
@@ -155,6 +155,12 @@ public class EditProfileController {
        
       public String updateProfile() throws SQLException, UnsupportedEncodingException
       {
+          
+          UserAuthController.currentUser.name = fio;
+          UserAuthController.currentUser.email = email;
+          UserAuthController.currentUser.saveInDb();
+          
+          
           if (fairyList != null && fairyList.length > 0)
           {
               for (Fairy fairy : fairyList)
