@@ -30,10 +30,10 @@
                 <tr>
                     <td align="center">
                         <div align="center">Описание</div>   
-                        <h:inputText value="#{EditProfileController.FIO}" >  
+                        ФИО: <h:inputText value="#{EditProfileController.FIO}" >  
                         </h:inputText>
                         <br>
-                        <h:inputText value="#{EditProfileController.email}" >  
+                        E-mail: <h:inputText value="#{EditProfileController.email}" >  
                         </h:inputText>
 
                     </td>
