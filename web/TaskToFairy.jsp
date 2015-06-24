@@ -13,11 +13,11 @@
                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-        <title>Управление задачами</title>
+        <title>Назначение задач феям</title>
     </head>
     <body>
         <div>
-            <h4 align="center">Управление задачами</h4>
+            <h4 align="center">Назначение задач феям</h4>
         </div>
         <div>                                                  
         <f:view>	
@@ -25,6 +25,9 @@
                 <div align="right">
                     <h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
                     <h:commandButton value="Редактировать профиль" action="#{UserAuthController.editProfile}" styleClass="btn btn-primary"/>
+                </div>
+                 <div align="right">
+                    <h:commandButton value="Управление задачами" action="#{TaskToFairyController.adminTasks}" styleClass="btn btn-primary"/>
                 </div>
                 <div align="center">
                     <div>Выбор исполнителя</div>           
@@ -101,7 +104,7 @@
                  <div align="center">
                     <div>Нераспределенные задачи</div>
                     <div style="width: 800px">
-                        <h:dataTable value="#{TaskToFairyController.tasksList}" rendered="#{not empty TaskToFairyController.tasksList}" var="task" border="1" styleClass="table">
+                    <h:dataTable value="#{TaskToFairyController.tasksList}" rendered="#{not empty TaskToFairyController.tasksList}" var="task" border="1" styleClass="table">
                        <h:column>
                            <f:facet name="header">  <h:outputText value="Имя"/>  </f:facet>    
                            <h:outputText value="#{task.tooth.child.name}"/>  

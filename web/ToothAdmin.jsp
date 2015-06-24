@@ -51,7 +51,7 @@
                          <h:column>
                             <f:facet name="header">  <h:outputText value=""/>  </f:facet>    
                             <h:commandButton action="#{tooth.DeleteFromDb}" styleClass="btn btn-danger"
-                                value="Отменить">
+                                value="Удалить">
                                
 
                             </h:commandButton>

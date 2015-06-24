@@ -49,8 +49,6 @@ public class EditProfileController {
         private String email;
         private String errorText;  
         
-        User currentUser;
-        
         private Boolean showSuccessAlert;
         
         public Fairy[] fairyList;
@@ -58,28 +56,27 @@ public class EditProfileController {
         public Child[] childList;
            
         public Fairy[] getFairyList() throws SQLException, UnsupportedEncodingException {
-            fairyList = FairyManager.GetFairysByMainFairyId(currentUser.roleEntityId, true).toArray(new Fairy[0]);
+            fairyList = FairyManager.GetFairysByMainFairyId(UserAuthController.currentUser.roleEntityId, true).toArray(new Fairy[0]);
             return fairyList;
         }
         
          public Child[] getChildList() throws SQLException, UnsupportedEncodingException {
-            childList = ChildrenManager.GetAllForParent(currentUser.roleEntityId, true).toArray(new Child[0]);
+            childList = ChildrenManager.GetAllForParent(UserAuthController.currentUser.roleEntityId, true).toArray(new Child[0]);
             return childList;
         }
         
         public EditProfileController() throws SQLException, UnsupportedEncodingException
         {
-            currentUser = UserAuthController.currentUser;
-            fio = currentUser.name;
+            fio = UserAuthController.currentUser.name;
             email = "test@test.com";
-            if (currentUser.roleId==1)
+            if (UserAuthController.currentUser.roleId==1)
             {
                 fairyList = getFairyList();
             }
             else
             {
                 fairyList = null;
-                if (currentUser.roleId==4)
+                if (UserAuthController.currentUser.roleId==4)
                 {
                     childList = getChildList();
                 }
@@ -92,17 +89,17 @@ public class EditProfileController {
         
         public String GoBack()
         {
-            if (currentUser.roleId==1)
+            if (UserAuthController.currentUser.roleId==1)
             {
                 return "TaskToFairy.jsp";
             }
 
-            if (currentUser.roleId==2)
+            if (UserAuthController.currentUser.roleId==2)
             {
                 return "StealMoney.jsp";
             }
 
-              if (currentUser.roleId==4)
+              if (UserAuthController.currentUser.roleId==4)
             {
                 return "AddTooth.jsp";
             }

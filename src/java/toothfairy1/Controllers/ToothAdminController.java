@@ -23,25 +23,20 @@ import toothfairy1.Models.User;
  * @author Николай
  */
 public class ToothAdminController {
-             private String errorText;  
-        
-        User currentUser;
-        
+        private String errorText;  
+                
         private Boolean showSuccessAlert;
         
         public Tooth[] teethList;
                   
         public Tooth[] getToothList() throws SQLException, UnsupportedEncodingException {
-            teethList = ToothManager.GetAllForParent(currentUser.roleEntityId).toArray(new Tooth[0]);
+            teethList = ToothManager.GetAllForParent(UserAuthController.currentUser.roleEntityId).toArray(new Tooth[0]);
             return teethList;
         }
         
         public ToothAdminController() throws SQLException, UnsupportedEncodingException
-        {
-            currentUser = UserAuthController.currentUser;
-           
-            
-            if (currentUser.roleId==4)
+        {                  
+            if (UserAuthController.currentUser.roleId==4)
             {
                 teethList = getToothList();
             }

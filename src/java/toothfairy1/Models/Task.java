@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 import static toothfairy1.Helpers.convertToDB;
+import toothfairy1.Managers.ChildrenManager;
 import toothfairy1.Managers.FairyManager;
 import toothfairy1.Managers.ToothManager;
 
@@ -50,9 +51,25 @@ public class Task {
         return ToothManager.GetToothById(toothId);
     }
     
+      public Fairy getFairy() throws UnsupportedEncodingException, SQLException {
+        return FairyManager.GetFairyById(fairyId);
+    }
+    
      public void setFairyId(long toothId){
        this.toothId = toothId;
     }
+     
+      public String getFairyName() throws SQLException, UnsupportedEncodingException{
+             try    
+             {
+                Fairy fairy =  FairyManager.GetFairyById(fairyId);
+                if (fairy != null) return fairy.name; else return "-";
+             }
+             catch (Exception ex)
+            {
+                return "-";
+            }
+         }
     
     public long getFairyId(){
         return toothId;

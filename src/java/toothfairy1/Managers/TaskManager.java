@@ -24,26 +24,6 @@ public class TaskManager {
     public static List<Task> GetAllActual() throws UnsupportedEncodingException, SQLException
     {
         List<Task> list = new ArrayList<Task>();
-        //вот тут из базы надо брать
-      /*  Task t1 = new Task();
-        t1.id = 1;
-        t1.toothId = 1;
-        t1.difficulty="Оче сложно";
-        t1.deadline=new Date(new java.util.Date("02/26/2015").getTime());
-        t1.probability = 0.3;
-        t1.isCompleted=false;
-  
-        Task t2 = new Task();
-        t2.id = 2;
-        t2.toothId = 2;
-        t2.fairyId=1;
-        t2.difficulty="Просто";
-        t2.deadline=new Date(new java.util.Date("02/25/2015").getTime());
-        t2.probability = 0.7;
-        t2.isCompleted=false;
-        list.add(t1);
-        list.add(t2);
-                */
         
         Factory atata = new Factory();
         List<TaskTable> tasks = atata.getInstance().getTaskDAO().getAllTasks();
@@ -91,6 +71,17 @@ public class TaskManager {
             }
         }
         return list; 
+    }
+    
+    public static Task GetTaskForTooth(long id) throws UnsupportedEncodingException, SQLException
+    {
+        List<Task> list = new ArrayList<Task>();
+        for (Task task : GetAllActual()) {
+            if (task.toothId == id) {
+                return task;
+            }
+        }
+        return null; 
     }
     
     public static Task GetTaskById(long id) throws SQLException, UnsupportedEncodingException

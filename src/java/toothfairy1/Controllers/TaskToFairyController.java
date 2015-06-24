@@ -51,6 +51,11 @@ public class TaskToFairyController {
         setSelectedFairy(FairyManager.GetFairyById((Long.valueOf(fairyId))));
     }    
      
+     
+    public String adminTasks() {
+        return "TaksAdmin.jsp";
+    }
+      
     public Task[] tasksList;
       
     public Task[] getTasksList() throws UnsupportedEncodingException, SQLException {

@@ -20,10 +20,12 @@ import java.sql.SQLException;
 public class Helpers {
      public static String convert(String s) throws UnsupportedEncodingException {
         return new String(s.getBytes("ISO-8859-1"), "UTF-8");
+        // return s;
     }
      
      public static String convertToDB(String s) throws UnsupportedEncodingException {
-        return new String(s.getBytes("UTF-8"), "ISO-8859-1");
+       return new String(s.getBytes("UTF-8"), "ISO-8859-1");
+        // return s;
     }
      
     public static byte[] toByteArray(Blob fromImageBlob) {
