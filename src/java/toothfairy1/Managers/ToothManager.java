@@ -39,7 +39,8 @@ public class ToothManager {
               t.texture = Helpers.convert(teeth.get(i).getTexture());
               t.lossDate = teeth.get(i).getLossDate();
               t.cost = teeth.get(i).getCost();
-              
+              if (teeth.get(i).getPhotoContent() != null)
+              t.photoContent = teeth.get(i).getPhotoContent().toString();
               list.add(t);
         }
         
@@ -65,6 +66,8 @@ public class ToothManager {
         t.cost = tooth.getCost();
         t.size = tooth.getSize();
         t.childId = tooth.getChildId();
+        if (tooth.getPhotoContent() != null)
+        t.photoContent = tooth.getPhotoContent().toString();
         return t;
     }
     
@@ -86,7 +89,8 @@ public class ToothManager {
               t.texture = Helpers.convert(teeth.get(i).getTexture());
               t.lossDate = teeth.get(i).getLossDate();
               t.cost = teeth.get(i).getCost();
-              
+              if (teeth.get(i).getPhotoContent() != null)
+              t.photoContent = teeth.get(i).getPhotoContent().toString();
               list.add(t);
         }
         

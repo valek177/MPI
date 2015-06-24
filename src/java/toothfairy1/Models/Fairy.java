@@ -16,7 +16,7 @@ import toothfairy1.Managers.TaskManager;
  *
  * @author Николай
  */
-public class Fairy {
+public class Fairy  implements Comparable<Fairy>{
     public long id;
     public long mainFairyId;
     public String name;
@@ -28,6 +28,12 @@ public class Fairy {
     public Fairy()
     {
 
+    }
+    
+    public int compareTo(Fairy other){
+       if (id > other.id) return 1;
+       if (id < other.id) return -1;
+       return 0;
     }
     
     public String getPhotoContent(){

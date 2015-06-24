@@ -100,7 +100,8 @@ public class Tooth {
             tooth.setSize(size);
             tooth.setTexture(convertToDB(texture));
             tooth.setChildId(childId);
-  //          tooth.setPhotoContent(String.getBytes(photoContent));
+            if (photoContent != null)
+            tooth.setPhotoContent(photoContent.getBytes());
           
             //Сохраним их в бд, id будут сгенерированы автоматически
             Factory.getInstance().getToothDAO().addTooth(tooth);
