@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import util.HibernateUtil;
 
 /**
  *
@@ -32,20 +33,21 @@ public class UsersIT {
   @Before
  public void before() {
   // setup the session factory
-  AnnotationConfiguration configuration = new AnnotationConfiguration();
+  /*AnnotationConfiguration configuration = new AnnotationConfiguration();
   configuration.addAnnotatedClass(Users.class);
   configuration.setProperty("hibernate.dialect",
     "org.hibernate.dialect.H2Dialect");
   configuration.setProperty("hibernate.connection.driver_class",
     "org.h2.Driver");
   configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost/toothfairy");
-  configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+  configuration.setProperty("hibernate.hbm2ddl.auto", "create");*/
  
-  sessionFactory = configuration.buildSessionFactory();
-  session = (Session) sessionFactory.openSession();
+session = HibernateUtil.getSessionFactory().openSession();
+//sessionFactory = configuration.buildSessionFactory();
+  //session = (Session) sessionFactory.openSession();
  }
  
- 
+ /*
  @Test
  public void returnUsersWithMatchingType() {
  
@@ -65,27 +67,73 @@ public class UsersIT {
   
   assertNotNull(hero);
  // assertEquals(1, hero.size());
- }
- 
+ }*/
+ /*
   @Test
     public void testWrite() {
         // Just a write, verify id set
-        Users user = new Users();
+       
+        Users hero = new Users();
+        hero.setName("Hero");
+        hero.setLogin("hero");
+        hero.setEmail("hero@hero");
+        hero.setPassword("123");
+        hero.setRoleId((long)1);
+        hero.setRoleEntityId((long)1);
         //Storage storage = new Storage(user);
-        //storage.beginTransaction();
+        session.beginTransaction();
         //user.setRole("SuperUser");
-        assertNull(user.getId());
+        assertNull(hero.getId());
+        session.save(hero);
         //storage.insert(user);
-        assertNotNull(user.getId());
-        //storage.commit();
-    }
+        assertNotNull(hero.getId());
+        session.getTransaction().commit();
+    }*/
     
+    @Test
+    public void testWriteAndReadAndDelete() {
+
+        Users hero = new Users();
+        hero.setName("Hero");
+        hero.setLogin("hero");
+        hero.setEmail("hero@hero");
+        hero.setPassword("123");
+        hero.setRoleId((long)1);
+        hero.setRoleEntityId((long)1);
+        //Storage storage = new Storage(user);
+        session.beginTransaction();
+        //user.setRole("SuperUser");
+        assertNull(hero.getId());
+        session.save(hero);
+        //storage.insert(user);
+        assertNotNull(hero.getId());
+        session.getTransaction().commit();
+
+        long id = hero.getId();
+        // Read and verify
+        Users actor2;
+        
+        session.beginTransaction();
+        actor2 = (Users) session.load(Users.class, id);
+        assertEquals(actor2.getName(), "Hero");
+        session.getTransaction().commit();
+        
+        session.beginTransaction();
+        session.delete(hero);
+        session.getTransaction().commit();
+        
+        session.beginTransaction();
+        actor2 = (Users) session.get(Users.class, id);
+        assertNull(actor2);
+    }
  @After
  public void after() {
-  session.close();
-  sessionFactory.close();
+     if (session != null) {
+        session.close();
+       // sessionFactory.close();
+     }
  }
-
+/*
     @Test
     public void testGetId() {
         System.out.println("getId");
@@ -232,5 +280,5 @@ public class UsersIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
 }
