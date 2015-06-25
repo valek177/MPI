@@ -46,7 +46,7 @@
                         </h:column>
                          <h:column>
                             <f:facet name="header">  <h:outputText value="Фото"/>  </f:facet>    
-                            <img src="data:image/jpg;base64, ${tooth.photoContent}" width="100" height="100"/>  
+                            <img src="data:image/jpg;base64, ${ToothAdminController.image}" width="100" height="100"/>  
                         </h:column>
                          <h:column>
                             <f:facet name="header">  <h:outputText value=""/>  </f:facet>    

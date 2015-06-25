@@ -147,7 +147,7 @@ public class Task {
         Random rand = new Random(); 
         int randomNum = rand.nextInt((10 - 1) + 1) + 1;
         
-        isSucceed = (randomNum <= probability*10);
+        isSucceed = (randomNum <= 50);
         if (isSucceed)
         {
             Fairy fairy = FairyManager.GetFairyById(fairyId);
