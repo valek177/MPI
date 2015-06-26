@@ -90,4 +90,8 @@ public class Child {
     public String getSleepInfo(){
         return sleepInfo;
     }
+    
+    public void setSleepInfo(String slinfo){
+        this.sleepInfo = slinfo;
+    }
 }
