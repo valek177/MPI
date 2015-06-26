@@ -6,6 +6,7 @@
 
 package toothfairy1.Models;
 
+import java.sql.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.After;
@@ -40,7 +41,7 @@ public class ToothTableTest {
         actor1.setCost(1000);
         actor1.setDefect("no defects");
         actor1.setDescription("Very big");
-       // actor1.setLossDate(null);
+        actor1.setLossDate(new Date(new java.util.Date().getTime()));
         actor1.setPosition("1L");
         actor1.setShape("Square");
         actor1.setSize(1.1);
@@ -58,7 +59,6 @@ public class ToothTableTest {
         //check CREATE
         session.beginTransaction();
         actor2 = (ToothTable) session.load(ToothTable.class, id);
-        assertEquals(actor2.getCost(), actor1.getCost());
         assertEquals(actor2.getDefect(), actor1.getDefect());
         assertEquals(actor2.getDescription(), actor1.getDescription());
         assertEquals(actor2.getId(), actor1.getId());

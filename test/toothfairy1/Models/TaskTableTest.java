@@ -43,7 +43,7 @@ public class TaskTableTest {
         actor1.setIsSucceed(0);
         actor1.setProbability(70);
         actor1.setToothId(1);
-       // actor1.setDeadline(null);
+        actor1.setDeadline(new Date(new java.util.Date().getTime()));
         session.beginTransaction();
         
         session.save(actor1);
