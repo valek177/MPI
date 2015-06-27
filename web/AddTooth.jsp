@@ -97,7 +97,7 @@
                          <br>
                         <div>
                             <h:inputFile value="#{AddToothController.photo}" validator="#{AddToothController.validateFile}" styleClass="btn btn-default"/>
-                            <h:commandButton value="Загрузить фотографию"   action="#{AddToothController.upload()}" styleClass="btn btn-primary"/>       
+                            <h:commandButton value="Загрузить фотографию"   action="#{AddToothController.upload()}" styleClass="btn btn-primary" />       
 
                             <div>
                                 <img src="data:image/jpg;base64, ${AddToothController.photoContent}" width="100" height="100"/>  

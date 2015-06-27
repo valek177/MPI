@@ -42,14 +42,8 @@ public class FairyManager {
               f1.skill = Helpers.convert(fairies.get(i).getSkill());
               f1.character = Helpers.convert(fairies.get(i).getFCharacter());
               f1.totalMoney = fairies.get(i).getTotalMoney();
-              if (fairies.get(i).getPhoto() != null) {
-              
-                 // byte [] alal;
-                 // alal = toByteArray(fairies.get(i).getPhoto());
-                  String a = Base64.encode(toByteArray(fairies.get(i).getPhoto()));
-                  f1.photoContent = a;
-              } else {
-                  f1.photoContent = "";
+              if (f1.getPhotoContent()!= null) {
+                 f1.photoContent = "data:image/jpg;base64,"+new String(fairies.get(i).getPhoto());
               }
               
               list.add(f1);
@@ -70,14 +64,8 @@ public class FairyManager {
         f.character = Helpers.convert(fairy.getFCharacter());
         f.totalMoney = fairy.getTotalMoney();
         if (fairy.getPhoto() != null) {
-              
-                 // byte [] alal;
-                 // alal = toByteArray(fairies.get(i).getPhoto());
-                  String a = Base64.encode(toByteArray(fairy.getPhoto()));
-                  f.photoContent = a;
-              } else {
-                  f.photoContent = "";
-              }
+                 f.photoContent = "data:image/jpg;base64,"+new String(fairy.getPhoto());
+        }
         return f;
     }
     
@@ -97,11 +85,8 @@ public class FairyManager {
               f1.skill = Helpers.convert(fairies.get(i).getSkill());
               f1.character = Helpers.convert(fairies.get(i).getFCharacter());
               f1.totalMoney = fairies.get(i).getTotalMoney();
-              if (fairies.get(i).getPhoto() != null) {
-                                String a = Base64.encode(toByteArray(fairies.get(i).getPhoto()));
-                  f1.photoContent = a;
-              } else {
-                  f1.photoContent = "";
+              if (f1.getPhotoContent()!= null) {
+                 f1.photoContent = "data:image/jpg;base64,"+new String(fairies.get(i).getPhoto());
               }
               
               list.add(f1);

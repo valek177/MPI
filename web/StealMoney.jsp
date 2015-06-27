@@ -63,8 +63,6 @@
                     <h:panelGroup rendered="#{!StealMoneyController.isListView}" id="pTask" >
                     <div align="center">
                         <h5>Задача</h5>
-
-                        <img src="data:image/jpg;base64, ${StealMoneyController.selectedTask.tooth.child.photoContent}" width="200" height="200"/>  
                         <br>
                          <br>
                          <h:outputText value="Имя: "/>

@@ -90,13 +90,12 @@ public class FairyTable {
     }
     
     @Column(name="PHOTO")
-    @Lob
-    private Blob photoContent;
-    public Blob getPhoto() {
+    private byte[] photoContent;
+    public byte[] getPhoto() {
         return photoContent;
     }
     
-    public void setPhoto(Blob photo){
+    public void setPhoto(byte[] photo){
         photoContent = photo;    
     }
     

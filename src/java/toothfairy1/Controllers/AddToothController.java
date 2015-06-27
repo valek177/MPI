@@ -6,6 +6,7 @@
 package toothfairy1.Controllers;
 import toothfairy1.Models.*;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import javax.servlet.http.*;
@@ -46,6 +47,8 @@ public class AddToothController {
         {
             lossDate = new java.sql.Date(new java.util.Date().getTime());
             size = 1.5;
+            isValid = false;
+            firstUpload = true;
         }
         
         public String unAuthorize() {
@@ -71,7 +74,7 @@ public class AddToothController {
         
          public String getPhotoContent() {
             if (photoContent != null)
-                return Base64.encode(photoContent.getBytes());
+                return new String(photoContent.getBytes());
             else return "";
         }
 
@@ -149,67 +152,79 @@ public class AddToothController {
         public String[] positionsList;
  
 	public String[] getShapesList() {
- 
 		return shapesList;
 	}
         
         public String[] getTexturesList() {
- 
-		/*texturesList = new ToothProperty[3];
-		texturesList[0] = new ToothProperty("Матовый шершавый", "1");
-		texturesList[1] = new ToothProperty("Матовый гладкий", "2");
-		texturesList[2] = new ToothProperty("Глянцевый", "3");*/
- 
 		return texturesList;
 	}
         
         public String[] getDefectsList() {
- 
-		/*defectsList = new ToothProperty[4];
-		defectsList[0] = new ToothProperty("Без дефектов", "1");
-		defectsList[1] = new ToothProperty("С трещиной", "2");
-		defectsList[2] = new ToothProperty("Со сколом", "3");
-                defectsList[3] = new ToothProperty("Разрушенный", "4");*/
 		return defectsList;
 	}
 
         public String[] getPositionsList() {
- 
-		/*positionsList = new ToothProperty[10];
-		positionsList[0] = new ToothProperty("1П", "1");
-		positionsList[1] = new ToothProperty("2П", "2");
-		positionsList[2] = new ToothProperty("3П", "3");
-                positionsList[3] = new ToothProperty("4П", "4");
-                positionsList[4] = new ToothProperty("5П", "5");
-                positionsList[5] = new ToothProperty("1Л", "6");
-		positionsList[6] = new ToothProperty("2Л", "7");
-		positionsList[7] = new ToothProperty("3Л", "8");
-                positionsList[8] = new ToothProperty("4Л", "9");
-                positionsList[9] = new ToothProperty("5Л", "10");*/
 		return positionsList;
 	}
         
+        Boolean isValid;
+        
+        Boolean firstUpload;
+        
        public void upload() {
             try {
-                 photoContent = new Scanner(photo.getInputStream()).useDelimiter("\\A").next();
+                               
+                 if (photo != null && photo.getInputStream() != null)
+                 {
+                    isValid = true;
+              
+                   
+                    if (photo.getSize() > 1024*1024) {
+                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Файл слишком велик"));
+                      isValid = false;
+                    }
+                    if (!"image/bmp".equals(photo.getContentType())) {
+                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Файл имеет формат, отличный от .bmp"));
+                      isValid = false;
+                    }
+                    
+  
+                    if (isValid)
+                    {
+                        photoContent = (Base64.encode(new Scanner(photo.getInputStream()).useDelimiter("\\A").next().getBytes()));
+                    }
+                 }
+                 else
+                 {
+                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Файл не задан"));
+                 }
             } 
             catch (Exception e) {
                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Не удалось загрузить файл"));
             }
+
        }
        
-       public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
-                List<FacesMessage> msgs = new ArrayList<FacesMessage>();
+       public void validateFile(FacesContext ctx, UIComponent comp, Object value) throws IOException
+       { 
+               /* isValid = true;
                 Part file = (Part)value;
                 if (file != null)
                 {
                     if (file.getSize() > 1024*1024) {
                       ctx.addMessage(null, new FacesMessage("Файл слишком велик"));
+                      isValid = false;
                     }
                     if (!"image/bmp".equals(file.getContentType())) {
-                      ctx.addMessage(null, new FacesMessage("Файл имеет неверный формат"));
+                      ctx.addMessage(null, new FacesMessage("Файл имеет формат, отличный от .bmp"));
+                      isValid = false;
                     }
                 }
+                else   
+                {
+                    isValid = false;
+                }
+                if (!isValid) { if (photo != null) photo.delete(); }*/
       }   
        
       public String addTooth() throws SQLException, UnsupportedEncodingException

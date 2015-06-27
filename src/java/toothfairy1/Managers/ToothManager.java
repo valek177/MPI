@@ -6,9 +6,11 @@
 package toothfairy1.Managers;
 
 import DAO.Factory;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import toothfairy1.Helpers;
 import static toothfairy1.Managers.TaskManager.GetAllActual;
@@ -40,7 +42,7 @@ public class ToothManager {
               t.lossDate = teeth.get(i).getLossDate();
               t.cost = teeth.get(i).getCost();
               if (teeth.get(i).getPhotoContent() != null)
-              t.photoContent = teeth.get(i).getPhotoContent().toString();
+              t.photoContent = "data:image/jpg;base64,"+new String(teeth.get(i).getPhotoContent());
               list.add(t);
         }
         
@@ -67,7 +69,7 @@ public class ToothManager {
         t.size = tooth.getSize();
         t.childId = tooth.getChildId();
         if (tooth.getPhotoContent() != null)
-        t.photoContent = tooth.getPhotoContent().toString();
+        t.photoContent = "data:image/jpg;base64,"+new String(tooth.getPhotoContent());
         return t;
     }
     
@@ -90,7 +92,7 @@ public class ToothManager {
               t.lossDate = teeth.get(i).getLossDate();
               t.cost = teeth.get(i).getCost();
               if (teeth.get(i).getPhotoContent() != null)
-              t.photoContent = teeth.get(i).getPhotoContent().toString();
+              t.photoContent = "data:image/jpg;base64,"+new String(teeth.get(i).getPhotoContent());
               list.add(t);
         }
         
