@@ -71,10 +71,7 @@
                                 <f:facet name="header">  <h:outputText value="Сон"/>  </f:facet>    
                                 <h:outputText value="#{child.sleepInfo}"/>  
                             </h:column>
-                             <h:column>
-                                <f:facet name="header">  <h:outputText value="Выбран"/>  </f:facet>    
-                                <h:selectBooleanCheckbox styleClass="btn btn-danger" value="#{child.assignedToParent}"/>
-                            </h:column>
+                            
                         </h:dataTable>
                     </div>
                     </h:panelGrid>
