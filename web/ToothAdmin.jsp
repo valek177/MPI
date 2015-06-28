@@ -21,6 +21,9 @@
         <div class="container" align="center">
         <f:view>	
             <h:form enctype="multipart/form-data">
+                 <div align="right">
+                    Текущий пользователь: <h:outputLabel value="#{UserAuthController.currentUser.name}"/>
+                </div>
                 <div align="right">
                     <h:commandButton value="Выйти" action="#{UserAuthController.unAuthorize}" styleClass="btn btn-primary"/>
                     <h:commandButton value="Назад" action="#{ToothAdminController.GoBack}" styleClass="btn btn-primary"/>

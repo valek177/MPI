@@ -18,6 +18,10 @@ public class User {
        public long id;
        public String login;
        public String name;
+
+    public String getName() {
+        return name;
+    }
        public String password;
        public String email;
        public long roleId;
