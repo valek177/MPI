@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class Helpers {
      public static String convert(String s) throws UnsupportedEncodingException {
         return new String(s.getBytes("ISO-8859-1"), "UTF-8");
-        // return s;
+       //  return s;
     }
      
      public static String convertToDB(String s) throws UnsupportedEncodingException {

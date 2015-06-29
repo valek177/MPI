@@ -102,7 +102,11 @@ public class ToothTable {
         }
         @Column(name="DESCRIPTION")
         public String getDescription() {
-            return description;
+            if (description == null) {
+                return "";
+            } else {
+                return description;
+            }
         }
         
         @Column(name="PHOTO")

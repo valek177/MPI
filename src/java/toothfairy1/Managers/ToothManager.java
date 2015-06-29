@@ -59,8 +59,8 @@ public class ToothManager {
          Tooth t = new Tooth();
         ToothTable tooth = Factory.getInstance().getToothDAO().getToothById(id);
         t.id = tooth.getId();
-        t.defect = Helpers.convert(tooth.getDefect());
         t.description = Helpers.convert(tooth.getDescription());
+        t.defect = Helpers.convert(tooth.getDefect());
         t.position = Helpers.convert(tooth.getPosition());
         t.shape = Helpers.convert(tooth.getShape());
         t.texture = Helpers.convert(tooth.getTexture());

@@ -183,7 +183,8 @@ public class AddToothController {
                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Файл слишком велик"));
                       isValid = false;
                     }
-                    if (!"image/bmp".equals(photo.getContentType())) {
+                    
+                    if (!("image/bmp".equals(photo.getContentType()) || "image/x-ms-bmp".equals(photo.getContentType()) || "image/x-bmp".equals(photo.getContentType()) || "image/x-MS-bmp".equals(photo.getContentType()))) {
                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Файл имеет формат, отличный от .bmp"));
                       isValid = false;
                     }
